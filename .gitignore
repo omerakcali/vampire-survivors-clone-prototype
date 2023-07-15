@@ -1,0 +1,25 @@
+# Ignore everything
+/*
+/*/
+ 
+# Inverse ignore some stuff
+!/Assets/
+!/ProjectSettings/
+!Jenny.properties
+!.gitignore
+!/Packages/
+/Packages/packages-lock.json
+!JenkinsFile
+
+    
+# OS Stuff
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+$RECYCLE.BIN/
+Desktop.ini
+
+**/ProjectSettings/RiderScriptEditorPersistedState.asset
