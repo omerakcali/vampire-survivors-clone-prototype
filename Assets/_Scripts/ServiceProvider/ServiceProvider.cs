@@ -27,4 +27,10 @@ public class ServiceProvider : MonoBehaviour
     {
         _services.Remove(service.name);
     }
+
+    public T Get<T>() where T:Service
+    {
+        var type = typeof(T);
+        return (T)_services[type.Name];
+    }
 }
