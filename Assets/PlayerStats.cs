@@ -6,4 +6,5 @@ using UnityEngine;
 public class PlayerStats : ScriptableObject
 {
     public float MoveSpeed;
+    public float RotationSpeed;
 }
