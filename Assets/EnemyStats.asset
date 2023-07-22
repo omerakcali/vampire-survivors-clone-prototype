@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: EnemyStats
   m_EditorClassIdentifier: 
   MaxHp: 10
-  Movespeed: 0
+  MoveSpeed: 1.25
+  RotationSpeed: 500
   Damage: 0
+  MeleeAttackInterval: 0

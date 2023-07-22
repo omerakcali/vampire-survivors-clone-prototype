@@ -8,7 +8,7 @@ public class EnemyStats : ScriptableObject
 {
     public int MaxHp;
     
-    public float Movespeed;
+    public float MoveSpeed;
     public float RotationSpeed;
     
     public float Damage;
