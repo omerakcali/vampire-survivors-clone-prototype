@@ -25,7 +25,7 @@ public class MovementController : MonoBehaviour
         if(_playerInputService.Touch0Delta.magnitude == 0f) return;
         var moveVector = new Vector3(_playerInputService.Touch0Delta.x, 0, _playerInputService.Touch0Delta.y);
         moveVector = Vector3.ClampMagnitude(moveVector, 1f);
-        transform.Translate(moveVector*Time.deltaTime*PlayerStats.MoveSpeed);
+        transform.Translate(moveVector * (Time.deltaTime * PlayerStats.MoveSpeed));
 
         var currentRotation = GraphicsRoot.localEulerAngles;
         var targetYRotation = Mathf.Atan2(moveVector.x,moveVector.z)*Mathf.Rad2Deg;
