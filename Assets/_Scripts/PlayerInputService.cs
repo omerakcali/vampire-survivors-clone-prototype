@@ -11,7 +11,12 @@ public class PlayerInputService : Service<PlayerInputService>
     public Vector2 Touch0Delta => GetTouchPosition(0) - _touch0StartPos;
 
     private Vector2 _touch0StartPos;
-    
+
+    internal override void Begin()
+    {
+        SetReady();
+    }
+
     public int GetTouchCount()
     {
         if (Input.touchCount > 0) return Input.touchCount;

@@ -43,6 +43,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1154792749527778367}
   - component: {fileID: 1154792749527778360}
+  - component: {fileID: 8871442483801432201}
   m_Layer: 0
   m_Name: PlayerCharacter
   m_TagString: Untagged
@@ -80,6 +81,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerStats: {fileID: 11400000, guid: 9f536577cd7ec49408c1b001c43a4504, type: 2}
   GraphicsRoot: {fileID: 1154792749015503061}
+--- !u!114 &8871442483801432201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1154792749527778361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17147f3fb4f6b9c41be0f9564c391a00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1154792749578663700
 GameObject:
   m_ObjectHideFlags: 0

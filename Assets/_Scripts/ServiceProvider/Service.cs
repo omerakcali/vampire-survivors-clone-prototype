@@ -6,6 +6,9 @@ using UnityEngine;
 public class Service : MonoBehaviour
 {
     protected ServiceProvider _serviceProvider;
+    protected List<Service> _dependencies;
+
+    protected bool _isReady;
 
     protected void Awake()
     {
@@ -25,6 +28,36 @@ public class Service : MonoBehaviour
     {
     }
 
+    public virtual void SetReady()
+    {
+        _isReady = true;
+        _serviceProvider.SetDependencyDirty();
+    }
+    
+    public virtual bool IsDependenciesReady()
+    {
+        if (_dependencies == null)
+        {
+            return true;
+        }
+        foreach (var service in _dependencies)
+        {
+            if (!service.IsReady())
+                return false;
+        }
+        return true;
+    }
+
+    public bool IsReady()
+    {
+        return _isReady;
+    }
+
+    public virtual bool HasDependency()
+    {
+        return _dependencies != null && _dependencies.Count > 0;
+    }
+    
     protected void OnDestroy()
     {
         Dispose();

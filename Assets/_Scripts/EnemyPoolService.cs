@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyPool : Service<EnemyPool>
+public class EnemyPoolService : Service<EnemyPoolService>
 {
     [SerializeField] 
     private Enemy EnemyPrefab;
@@ -15,9 +15,10 @@ public class EnemyPool : Service<EnemyPool>
 
     private List<Enemy> _reservedItems = new();
     
-    internal override void Init()
+    internal override void Begin()
     {
         PopulatePool();
+        SetReady();
     }
 
     private void PopulatePool()
