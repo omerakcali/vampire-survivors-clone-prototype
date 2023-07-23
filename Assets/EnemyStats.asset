@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96965f3dd64d6c343bb97d138239ce70, type: 3}
   m_Name: EnemyStats
   m_EditorClassIdentifier: 
-  MaxHp: 10
+  MaxHp: 5
   MoveSpeed: 1.25
   RotationSpeed: 500
   Damage: 0

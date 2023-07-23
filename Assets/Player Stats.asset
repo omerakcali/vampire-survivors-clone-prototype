@@ -15,7 +15,7 @@ MonoBehaviour:
   MaxHp: 10
   MoveSpeed: 2.5
   RotationSpeed: 540
-  FrostboltDamage: 2
+  FrostboltDamage: 3
   FrostboltInterval: 2
-  FrostboltSpeed: 3
-  FrostboltProjectileDuration: 10
+  FrostboltSpeed: 4
+  FrostboltProjectileDuration: 3
