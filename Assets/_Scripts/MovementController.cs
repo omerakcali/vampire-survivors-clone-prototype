@@ -12,15 +12,18 @@ public class MovementController : MonoBehaviour
     private Transform GraphicsRoot;
     
     private PlayerInputService _playerInputService;
+    private GameStartManager _gameStartManager;
     private float _lastRotationZ;
 
     private void Awake()
     {
         _playerInputService = ServiceProvider.Instance.Get<PlayerInputService>();
+        _gameStartManager = ServiceProvider.Instance.Get<GameStartManager>();
     }
 
     private void Update()
     {
+        if(!_gameStartManager.GameStarted) return;
         if (_playerInputService.GetTouchCount() <= 0) return;
         if(_playerInputService.Touch0Delta.magnitude == 0f) return;
         var moveVector = new Vector3(_playerInputService.Touch0Delta.x, 0, _playerInputService.Touch0Delta.y);
