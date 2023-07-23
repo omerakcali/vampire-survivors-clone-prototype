@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -13,6 +14,8 @@ public class Enemy : MonoBehaviour
     private EnemyDiedEvent _enemyDiedEvent;
     
     private PlayerCharacter _playerCharacter;
+
+    private Tween _hitTween;
 
     public int Hp { get; private set; }
 
@@ -49,6 +52,8 @@ public class Enemy : MonoBehaviour
 
     public void Hit(int damage)
     {
+        _hitTween?.Kill();
+        _hitTween =GraphicsRoot.DOShakeScale(.12f, .25f, 2);
         Hp -= damage;
         _enemyHitEvent.Fire(new EnemyHitEvent.Data(this,damage));
         if (Hp <= 0)
@@ -59,7 +64,11 @@ public class Enemy : MonoBehaviour
 
     private void Die()
     {
+        _hitTween?.Kill();
+        GraphicsRoot.DOScale(.1f, .25f).SetEase(Ease.InCubic).OnComplete(() =>
+        {
         _enemyDiedEvent.Fire(this);
+        });
     }
 
     private void Update()
