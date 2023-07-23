@@ -9,20 +9,26 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] private Transform GraphicsRoot;
 
-
-    private PlayerCharacter _playerCharacter;
+    private EnemyHitEvent _enemyHitEvent;
+    private EnemyDiedEvent _enemyDiedEvent;
     
+    private PlayerCharacter _playerCharacter;
+
     public int Hp { get; private set; }
 
     private bool _moving;
 
     private void Awake()
     {
+        _enemyHitEvent = ServiceProvider.Instance.Get<EnemyHitEvent>();
+        _enemyDiedEvent = ServiceProvider.Instance.Get<EnemyDiedEvent>();
+
         _playerCharacter = PlayerCharacter.Instance;
     }
 
     public void ResetToDefault()
     {
+        SetMove(false);
         Hp = Stats.MaxHp;
     }
 
@@ -41,6 +47,21 @@ public class Enemy : MonoBehaviour
         _moving = status;
     }
 
+    public void Hit(int damage)
+    {
+        Hp -= damage;
+        _enemyHitEvent.Fire(new EnemyHitEvent.Data(this,damage));
+        if (Hp <= 0)
+        {
+            Die();
+        }
+    }
+
+    private void Die()
+    {
+        _enemyDiedEvent.Fire(this);
+    }
+
     private void Update()
     {
         if(!_moving) return;
@@ -54,4 +75,16 @@ public class Enemy : MonoBehaviour
             new Vector3(currentRotation.x, YRotation, currentRotation.z);
         GraphicsRoot.localEulerAngles = currentRotation;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        var receiver = other.GetComponentInParent<IEnemyTriggerReceiver>();
+        if(receiver == null) return;
+        receiver.OnEnemyTrigger(this);
+    }
+}
+
+public interface IEnemyTriggerReceiver
+{
+    public void OnEnemyTrigger(Enemy enemy);
 }

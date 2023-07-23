@@ -10,4 +10,7 @@ public class PlayerStats : ScriptableObject
     public float RotationSpeed;
 
     public int FrostboltDamage;
+    public float FrostboltInterval;
+    public float FrostboltSpeed;
+    public float FrostboltProjectileDuration;
 }

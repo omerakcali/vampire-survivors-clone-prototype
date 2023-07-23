@@ -13,6 +13,8 @@ public class EnemySpawner : Service<EnemySpawner>
     
     private EnemyPoolService _enemyPoolService;
 
+    private EnemyDiedEvent _enemyDiedEvent;
+
     private List<Enemy> _availableEnemies = new();
     private float _lastSpawnTime;
     private bool _spawning;
@@ -24,12 +26,22 @@ public class EnemySpawner : Service<EnemySpawner>
         {
             _enemyPoolService
         };
+
+        _enemyDiedEvent = _serviceProvider.Get<EnemyDiedEvent>();
     }
 
     internal override void Begin()
     {
+        _enemyDiedEvent.Subscribe(OnEnemyDied);
         StartSpawning();
+        
         SetReady();
+    }
+
+    private void OnEnemyDied(Enemy enemy)
+    {
+        enemy.ResetToDefault();
+        _enemyPoolService.Return(enemy);
     }
 
     private void StartSpawning()
@@ -53,6 +65,25 @@ public class EnemySpawner : Service<EnemySpawner>
                        direction * Random.Range(SpawnDistanceRange.x, SpawnDistanceRange.y);
         enemy.Initialize(position,transform);
     }
+
+    public Enemy GetNearestEnemy(Vector3 origin)
+    {
+        if (_availableEnemies.Count == 0) return null;
+        float minDistance = float.MaxValue;
+        Enemy nearest = _availableEnemies[0];
+        foreach (var enemy in _availableEnemies)
+        {
+            var distance = Vector3.Distance(enemy.transform.position, origin);
+            if ( distance< minDistance)
+            {
+                minDistance = distance;
+                nearest = enemy;
+            }
+        }
+
+        return nearest;
+    }
+    
 
     private void Update()
     {

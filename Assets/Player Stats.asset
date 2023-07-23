@@ -12,5 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb39bff039ca75845b6efca578f74704, type: 3}
   m_Name: Player Stats
   m_EditorClassIdentifier: 
+  MaxHp: 10
   MoveSpeed: 2.5
   RotationSpeed: 540
+  FrostboltDamage: 2
+  FrostboltInterval: 2
+  FrostboltSpeed: 3
+  FrostboltProjectileDuration: 10
