@@ -39,6 +39,7 @@ public class FrostboltPoolService : Service<FrostboltPoolService>
         {
             var instance = _reservedItems[^1];
             _reservedItems.RemoveAt(_reservedItems.Count-1);
+            instance.transform.SetParent(null);
             instance.ResetToDefault();
             return instance;
         }

@@ -51,6 +51,7 @@ public class FrostboltProjectile : MonoBehaviour, IEnemyTriggerReceiver
 
     public void ResetToDefault()
     {
-        
+        _target = null;
+        _onDestroy = null;
     }
 }

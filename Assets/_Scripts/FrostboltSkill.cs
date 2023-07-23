@@ -46,7 +46,7 @@ public class FrostboltSkill : MonoBehaviour , IPlayerSkill
         var enemy = _enemySpawner.GetNearestEnemy(transform.position);
         var projectile = _pool.Request();
         projectile.transform.position = SpawnPoint.position;
-        projectile.Shoot(enemy,OnProjectileDestroy); 
+        projectile.Shoot(enemy,OnProjectileDestroy);
     }
 
     private void OnProjectileDestroy(FrostboltProjectile projectile)
