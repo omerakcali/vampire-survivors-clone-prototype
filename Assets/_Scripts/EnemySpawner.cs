@@ -41,6 +41,7 @@ public class EnemySpawner : Service<EnemySpawner>
     private void OnEnemyDied(Enemy enemy)
     {
         enemy.ResetToDefault();
+        _availableEnemies.Remove(enemy);
         _enemyPoolService.Return(enemy);
     }
 
