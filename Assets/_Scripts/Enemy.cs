@@ -32,6 +32,7 @@ public class Enemy : MonoBehaviour
     public void ResetToDefault()
     {
         SetMove(false);
+        GraphicsRoot.localScale = Vector3.one;
         Hp = Stats.MaxHp;
     }
 
@@ -67,7 +68,7 @@ public class Enemy : MonoBehaviour
         _hitTween?.Kill();
         GraphicsRoot.DOScale(.1f, .25f).SetEase(Ease.InCubic).OnComplete(() =>
         {
-        _enemyDiedEvent.Fire(this);
+            _enemyDiedEvent.Fire(this);
         });
     }
 

@@ -22,6 +22,7 @@ public class FrostboltProjectile : MonoBehaviour, IEnemyTriggerReceiver
         _direction = target != null ? target.transform.position - transform.position : Random.onUnitSphere;
         _direction = new Vector3(_direction.x, 0, _direction.z);
         _direction.Normalize();
+        _enemiesHit.Clear();
         gameObject.SetActive(true);
     }
 
