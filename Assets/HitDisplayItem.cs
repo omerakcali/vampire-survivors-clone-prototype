@@ -24,7 +24,7 @@ public class HitDisplayItem : MonoBehaviour
         gameObject.SetActive(true);
         _sequence?.Kill();
         _sequence = DOTween.Sequence();
-        _sequence.Append(Text.transform.DOLocalMoveY(25f, 1f));
+        _sequence.Append(Text.transform.DOLocalMoveY(85f, 1f));
         _sequence.Join(Text.DOFade(0f, 1f));
         _sequence.OnComplete(ReturnToPool);
     }
