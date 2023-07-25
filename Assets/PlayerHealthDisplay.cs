@@ -30,4 +30,9 @@ public class PlayerHealthDisplay : MonoBehaviour
         _sliderTween?.Kill();
         _sliderTween = Slider.DOValue((float)PlayerCharacter.Instance.Hp / PlayerStats.MaxHp, .25f);
     }
+
+    private void OnDestroy()
+    {
+        _sliderTween?.Kill();
+    }
 }
