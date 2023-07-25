@@ -43,6 +43,7 @@ public class EnemySpawner : Service<EnemySpawner>
         enemy.ResetToDefault();
         _availableEnemies.Remove(enemy);
         _enemyPoolService.Return(enemy);
+        if(_availableEnemies.Count <=MaxSpawnedEnemies) StartSpawning();
     }
 
     private void StartSpawning()
