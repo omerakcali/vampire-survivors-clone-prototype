@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
@@ -34,5 +35,10 @@ public class HitDisplayItem : MonoBehaviour
         Text.alpha = 1f;
         Text.transform.localPosition = Vector3.zero;
         _manager.Return(this);
+    }
+
+    private void OnDestroy()
+    {
+        _sequence?.Kill();
     }
 }

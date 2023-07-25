@@ -3,30 +3,56 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class GameStartManager : Service<GameStartManager>
 {
-    [SerializeField] private Canvas Canvas;
-    [SerializeField] private Button Button;
+    [SerializeField] private Transform StartGamePanel;
+    [SerializeField] private Button StartGameButton;
+    [SerializeField] private Transform RestartGamePanel;
+    [SerializeField] private Button RestartGameButton;
 
+    private PlayerDieEvent _playerDieEvent;
     public bool GameStarted { get; private set; }
     internal override void Init()
     {
-        Canvas.gameObject.SetActive(true);
+        _playerDieEvent = _serviceProvider.Get<PlayerDieEvent>();
+        
+        StartGamePanel.gameObject.SetActive(true);
         GameStarted = false;
         Time.timeScale = 0f; // FIX this logic
     }
 
     internal override void Begin()
     {
-        Button.onClick.AddListener(StartGame);
+        StartGameButton.onClick.AddListener(StartGame);
+        RestartGameButton.onClick.AddListener(RestartGame);
+        
+        _playerDieEvent.Subscribe(OnPlayerDie);
+    }
+
+    private void OnPlayerDie(bool arg0)
+    {
+        GameStarted = false;
+        Time.timeScale = 0f;
+        ShowDeathPanel();
     }
 
     private void StartGame()
     {
         GameStarted = true;
-        Canvas.gameObject.SetActive(false);
+        StartGamePanel.gameObject.SetActive(false);
         Time.timeScale = 1;
+    }
+
+    private void ShowDeathPanel()
+    {
+        RestartGamePanel.gameObject.SetActive(true);
+    }
+
+    private void RestartGame()
+    {
+        SceneManager.LoadScene(0);
     }
 }

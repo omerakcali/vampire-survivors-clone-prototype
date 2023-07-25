@@ -11,6 +11,6 @@ public class EnemyStats : ScriptableObject
     public float MoveSpeed;
     public float RotationSpeed;
     
-    public float Damage;
+    public int Damage;
     public float MeleeAttackInterval;
 }

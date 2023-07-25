@@ -60,8 +60,11 @@ public class Service : MonoBehaviour
     
     protected void OnDestroy()
     {
-        Dispose();
-        _serviceProvider.UnRegister(this);
+        if (_serviceProvider != null)
+        {
+            Dispose();
+            _serviceProvider.UnRegister(this);
+        }
     }
 }
 

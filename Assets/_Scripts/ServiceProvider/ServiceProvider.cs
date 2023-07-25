@@ -3,8 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.Design.Serialization;
 using UnityEngine;
-[DefaultExecutionOrder(-100000)]
 
+[DefaultExecutionOrder(-100000)]
 public class ServiceProvider : MonoBehaviour
 {
     public static  ServiceProvider Instance;

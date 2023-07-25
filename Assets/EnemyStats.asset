@@ -15,5 +15,5 @@ MonoBehaviour:
   MaxHp: 5
   MoveSpeed: 1.25
   RotationSpeed: 500
-  Damage: 0
-  MeleeAttackInterval: 0
+  Damage: 2
+  MeleeAttackInterval: 2
